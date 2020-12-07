@@ -507,7 +507,7 @@
                 /* ----- DO NOT MODIFY THIS CODE ----- */
                 return getU2FSignChallenge(username)
                     .then((signRequest) => {
-                        return U2FSignPromise(signRequest.appId, signRequest.challenge, [.challenge])
+                        return U2FSignPromise(signRequest.appId, signRequest.challenge, [challenge])
                     })
                     .then((signResponse) => {
                         return sendU2FSignResponse(signResponse)
