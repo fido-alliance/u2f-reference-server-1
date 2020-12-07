@@ -1,17 +1,14 @@
 const config = require('./config.json');
 const fs     = require('fs');
 
-if(process.env['APPID_AND_FACETS_APPURL'])
-    config.appURL = process.env['APPID_AND_FACETS_APPURL'];
+if(process.env['COOKEY_KEY'])
+    config.cookeyKey = process.env['COOKEY_KEY'];
 
-if(process.env['APPID_AND_FACETS_BAD_APP_REDIRECT_URL'])
-    config.badAppRedirectURL = process.env['APPID_AND_FACETS_BAD_APP_REDIRECT_URL'];
+if(process.env['PORT'])
+    config.port = process.env['PORT'];
 
-if(process.env['APPID_AND_FACETS_EVIL_ETLD'])
-    config.evilETLD = process.env['APPID_AND_FACETS_EVIL_ETLD'];
-
-if(process.env['APPID_AND_FACETS_ADDITIONAL_FACETS'])
-    config.additionalFacets = JSON.parse(process.env['APPID_AND_FACETS_ADDITIONAL_FACETS']);
+if(process.env['APPID'])
+    config.appID = process.env['APPID'];
 
 let jsonContent = JSON.stringify(config, null, 4);
 console.log('Injecting environment variables to the config... ', jsonContent)
