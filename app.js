@@ -13,15 +13,14 @@ const APP_ID = config.appID;
 const app  = Express();
 const port = config.port;
 
-app.use(session({ secret: config.cookeyKey, cookie: { secure: true, maxAge: 60000 }, saveUninitialized: true, resave: true }));
+console.log(config)
+app.use(session({ secret: config.cookeyKey, saveUninitialized: true, resave: false }));
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
-app.use(Cors({ origin: [APP_ID], credentials: true }));
 
 var users = {}
 
 app.use(Express.static(path.join(__dirname, 'public'))); //Serves resources from public folder
-
 
 app.post("/register/init", (request, response, next) => {
     if (!request.body.username) {
@@ -33,11 +32,12 @@ app.post("/register/init", (request, response, next) => {
         });
     }
 
-    console.log(request.session.u2fchallenge);
-    console.log(request.body.username);
-
     request.session.u2fchallenge = U2F.request(APP_ID);
     request.session.username     = request.body.username
+
+
+    console.log("request.session.u2fchallenge", request.session.u2fchallenge);
+    console.log("username", request.body.username);
 
     return response.json({
         status: "ok",
