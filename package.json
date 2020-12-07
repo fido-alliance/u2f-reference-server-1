@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode development",
-    "lint": "vue-cli-service lint"
+    "start": "node injectenv.js && node app.js"
   },
   "dependencies": {
     "@vue/cli": "^4.4.1",

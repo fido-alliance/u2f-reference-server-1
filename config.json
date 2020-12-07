@@ -1,0 +1,5 @@
+{
+    "port": 3004,
+    "appID": "https://example.com",
+    "cookeyKey": "CHANGE_ME_YOU_MUST"
+}
