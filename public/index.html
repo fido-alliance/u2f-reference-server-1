@@ -353,6 +353,7 @@
             return new Promise((resolve, reject) => {
                 window.u2f.register(appID, registerRequests, registeredKeys, 
                 (response) => {
+                    console.log(response)
                     return { registerResponse: response }
                 });
             })
@@ -362,6 +363,7 @@
             return new Promise((resolve, reject) => {
                 window.u2f.sign(appID, challenge, registeredKeys, 
                 (response) => {
+                    console.log(response)
                     return { loginResponse: response }
                 });
             })
@@ -494,21 +496,21 @@
                 let attestation = 'direct';
 
                 return getU2FRegisterChallenge(username)
-                    .then((response) => {
-                        return U2FRegisterPromise(response.challenge.appId, [response.challenge], [])
+                    .then((registerRequest) => {
+                        return U2FRegisterPromise(registerRequest.appId, [registerRequest], [])
                     })
-                    .then((response) => {
-                        return sendU2FRegisterResponse(response)
+                    .then((registerResponse) => {
+                        return sendU2FRegisterResponse(registerResponse)
                     })
             },
             'testSign': () => {
                 /* ----- DO NOT MODIFY THIS CODE ----- */
                 return getU2FSignChallenge(username)
-                    .then((response) => {
-                        return U2FSignPromise(response.challenge.appId, response.challenge.challenge, [response.challenge])
+                    .then((signRequest) => {
+                        return U2FSignPromise(signRequest.appId, signRequest.challenge, [.challenge])
                     })
-                    .then((response) => {
-                        return sendU2FSignResponse(response)
+                    .then((signResponse) => {
+                        return sendU2FSignResponse(signResponse)
                     })
             }
         }
