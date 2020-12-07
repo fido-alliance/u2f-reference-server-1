@@ -58,7 +58,7 @@ app.post("/register/response", (request, response, next) => {
     console.log("request.session.u2fchallenge", request.session.u2fchallenge);
     console.log("request.body.registerResponse", request.body.registerResponse);
 
-    var registration = U2F.checkRegistration(request.session.u2f, request.body.registerResponse);
+    var registration = U2F.checkRegistration(request.session.u2fchallenge, request.body.registerResponse);
 
     console.log("registration", registration);
 
