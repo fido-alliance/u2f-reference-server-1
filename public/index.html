@@ -354,7 +354,7 @@
                 window.u2f.register(appID, registerRequests, registeredKeys, 
                 (response) => {
                     console.log(response)
-                    return { registerResponse: response }
+                    resolve({ registerResponse: response })
                 });
             })
         }
@@ -364,7 +364,7 @@
                 window.u2f.sign(appID, challenge, registeredKeys, 
                 (response) => {
                     console.log(response)
-                    return { loginResponse: response }
+                    resolve({ loginResponse: response })
                 });
             })
         }
